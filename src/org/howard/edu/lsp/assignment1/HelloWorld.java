@@ -1,7 +1,7 @@
 /**
  * Name: Rahual Rai
  */
-package src.assignment1;
+package src.org.howard.edu.lsp.assignment1;
 
 public class HelloWorld {
     public static void main(String[] args) {
