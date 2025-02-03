@@ -11,7 +11,6 @@ import java.util.List;
 public class ETLPipeline {
     public static void main(String[] args) {
         String inputFile = "data/products.csv";
-        String outputFile = "data/transformed_products.csv";
         List<Product> products = new ArrayList<>();
 
         // EXTRACT products from the CSV file
@@ -37,6 +36,10 @@ public class ETLPipeline {
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        for (Product p : products) {
+            p.transform();
         }
     }
 }
