@@ -11,9 +11,10 @@ import java.util.List;
 public class ETLPipeline {
     public static void main(String[] args) {
         String inputFile = "data/products.csv";
+        String outputFile = "data/products_transformed.csv";
         List<Product> products = new ArrayList<>();
 
-        // EXTRACT products from the CSV file
+        // EXTRACT products from the input CSV file
         // referenced from: http://www.codebind.com/java-tutorials/java-example-read-file-using-java/
         try (BufferedReader br = new BufferedReader(new FileReader(inputFile))) {
             String line;
@@ -37,9 +38,21 @@ public class ETLPipeline {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
+        // TRANSFORM products
         for (Product p : products) {
             p.transform();
+        }
+
+        // LOAD transformed products to the output CSV file
+        // referenced from: https://www.geeksforgeeks.org/how-to-read-write-objects-data-in-csv-format-using-notepad-in-java/
+        try (java.io.FileWriter writer = new java.io.FileWriter(outputFile)) {
+            writer.write("ProductID,Name,Price,Category,PriceRange\n");
+            for (Product p : products) {
+                writer.write(p.toCSV() + "\n");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
