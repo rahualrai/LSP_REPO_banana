@@ -1,7 +1,7 @@
 /**
  * Name: Rahual Rai
  */
-package src.org.howard.edu.lsp.assignment2;
+package org.howard.edu.lsp.assignment2;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
