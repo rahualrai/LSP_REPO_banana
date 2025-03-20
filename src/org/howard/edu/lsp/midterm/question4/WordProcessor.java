@@ -2,15 +2,26 @@ package org.howard.edu.lsp.midterm.question4;
 
 import java.util.*;
 
+/**
+ * The WordProcessor class processes a sentence to find the longest words.
+ */
 public class WordProcessor {
     private String sentence; // Stores the sentence to be processed
 
-    // Constructor
+    /**
+     * Constructs a new WordProcessor with the specified sentence.
+     *
+     * @param sentence the sentence to be processed
+     */
     public WordProcessor(String sentence) {
         this.sentence = sentence;
     }
 
-    // Method to find all longest words in the sentence
+    /**
+     * Finds all the longest words in the sentence.
+     *
+     * @return a list of the longest words in the sentence
+     */
     public List<String> findLongestWords() {
         if (sentence == null || sentence.trim().isEmpty()) return new ArrayList<>(); // return empty list
         
