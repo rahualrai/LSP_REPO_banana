@@ -22,6 +22,8 @@ class IntegerSetTest {
 
         assertEquals("[10, 15, 20, 25, 30]", testSet1.toString());
 
+        IntegerSet testSet2 = new IntegerSet();
+        assertEquals("[]", testSet2.toString());
     }
 
     @Test
@@ -51,6 +53,9 @@ class IntegerSetTest {
         testSet1.clear();
         assertEquals("[]", testSet1.toString());
 
+        IntegerSet testSet2 = new IntegerSet();
+        testSet2.clear();
+        assertEquals("[]", testSet2.toString());
     }
 
     @Test
@@ -71,6 +76,12 @@ class IntegerSetTest {
 
         assertEquals("[30]", testSet1.toString());
 
+        IntegerSet testSet2 = new IntegerSet();
+        testSet2.remove(10);
+        testSet2.remove(15);
+        testSet2.remove(20);
+        testSet2.remove(25);
+        assertEquals("[]", testSet2.toString());
     }
 
     @Test
@@ -87,6 +98,9 @@ class IntegerSetTest {
         Integer expectedLength1 = testSet1.length();
         assertEquals(5, expectedLength1);
 
+        IntegerSet testSet2 = new IntegerSet();
+        Integer expectedLength2 = testSet2.length();
+        assertEquals(0, expectedLength2);
     }
 
     @Test
@@ -129,6 +143,21 @@ class IntegerSetTest {
         testSet3.diff(testSet4);
         assertEquals("[10, 15, 20, 25, 30, 35, 40, 45, 50]", testSet3.toString());
 
+        IntegerSet testSet5 = new IntegerSet();
+        IntegerSet testSet6 = new IntegerSet();
+        testSet6.add(10);
+        testSet6.add(15);
+        testSet6.add(20);
+        testSet6.add(25);
+        testSet6.add(30);
+
+        testSet5.diff(testSet6);
+        assertEquals("[]", testSet5.toString());
+
+        IntegerSet testSet7 = new IntegerSet();
+        IntegerSet testSet8 = new IntegerSet();
+        testSet7.diff(testSet8);
+        assertEquals("[]", testSet7.toString());
     }
 
     @Test
@@ -163,6 +192,20 @@ class IntegerSetTest {
         testSet3.intersect(testSet4);
         assertEquals("[]", testSet3.toString());
 
+        IntegerSet testSet5 = new IntegerSet();
+        IntegerSet testSet6 = new IntegerSet();
+        testSet6.add(10);
+        testSet6.add(20);
+        testSet6.add(25);
+        testSet6.add(30);
+
+        testSet5.intersect(testSet6);
+        assertEquals("[]", testSet5.toString());
+
+        IntegerSet testSet7 = new IntegerSet();
+        IntegerSet testSet8 = new IntegerSet();
+        testSet7.intersect(testSet8);
+        assertEquals("[]", testSet7.toString());
     }
 
     @Test
@@ -197,6 +240,20 @@ class IntegerSetTest {
         testSet3.union(testSet4);
         assertEquals("[10, 35, 40, 45, 50]", testSet3.toString());
 
+        IntegerSet testSet5 = new IntegerSet();
+        IntegerSet testSet6 = new IntegerSet();
+        testSet6.add(10);
+        testSet6.add(20);
+        testSet6.add(25);
+        testSet6.add(30);
+
+        testSet5.union(testSet6);
+        assertEquals("[10, 20, 25, 30]", testSet5.toString());
+
+        IntegerSet testSet7 = new IntegerSet();
+        IntegerSet testSet8 = new IntegerSet();
+        testSet7.union(testSet8);
+        assertEquals("[]", testSet7.toString());
     }
 
     @Test
@@ -218,6 +275,23 @@ class IntegerSetTest {
         boolean expectedBoolean = testSet1.equals(testSet2);
         assertEquals(true, expectedBoolean);
 
+        testSet1.add(10);
+        testSet1.add(20);
+        testSet1.add(25);
+        testSet1.add(30);
+
+        testSet2.add(15);
+        testSet2.add(20);
+        testSet2.add(25);
+        testSet2.add(30);
+
+        expectedBoolean = testSet1.equals(testSet2);
+        assertEquals(false, expectedBoolean);
+
+        testSet1.clear();
+        testSet2.clear();
+        expectedBoolean = testSet1.equals(testSet2);
+        assertEquals(true, expectedBoolean);
     }
 
     @Test
