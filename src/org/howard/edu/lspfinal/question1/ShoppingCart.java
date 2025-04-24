@@ -19,10 +19,23 @@ public class ShoppingCart {
      * @throws IllegalArgumentException if price is negative
      */
     public void addItem(String itemName, double price) {
-        if (price < 0) {
-            throw new IllegalArgumentException("Price cannot be negative.");
+        if (price <= 0) {
+            throw new IllegalArgumentException("Price must be greater than zero."); // edited to work with the code
         }
         items.put(itemName, price);
+    }
+
+    /**
+     * Removes an item from the shopping cart.
+     * 
+     * @param itemName the name of the item to remove
+     * @throws IllegalArgumentException if the item does not exist in the cart
+     */
+    public void removeItem(String itemName) {
+        if (!items.containsKey(itemName)) {
+            throw new IllegalArgumentException("Item does not exist in the cart.");
+        }
+        items.remove(itemName);
     }
 
     /**
