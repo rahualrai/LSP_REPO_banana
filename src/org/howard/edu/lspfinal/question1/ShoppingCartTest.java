@@ -24,7 +24,7 @@ public class ShoppingCartTest {
     @DisplayName("Test for adding item with 0 price (expect exception)")
     void testAddZeroPrice() {
         assertThrows(IllegalArgumentException.class,
-            () -> cart.addItem("Freebie", 0.0));
+            () -> cart.addItem("Orange", 0.0));
     }
 
     @Test
