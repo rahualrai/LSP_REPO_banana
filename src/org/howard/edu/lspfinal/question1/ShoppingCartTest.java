@@ -14,24 +14,45 @@ public class ShoppingCartTest {
     }
 
     @Test
-    @DisplayName("Test adding valid item")
+    @DisplayName("Test for adding valid item")
     void testAddValidItem() {
         cart.addItem("Apple", 1.25);
         assertEquals(1.25, cart.getTotalCost());
     }
 
     @Test
-    @DisplayName("Test adding item with negative price (expect exception)")
-    void testAddNegativePrice() {
+    @DisplayName("Test for adding item with 0 price (expect exception)")
+    void testAddZeroPrice() {
         assertThrows(IllegalArgumentException.class,
-                     () -> cart.addItem("Banana", -0.50));
+            () -> cart.addItem("Freebie", 0.0));
     }
 
     @Test
-    @DisplayName("Test applying SAVE10")
+    @DisplayName("Test for adding item with negative price (expect exception)")
+    void testAddNegativePrice() {
+        assertThrows(IllegalArgumentException.class, 
+            () -> cart.addItem("Banana", -0.50));
+    }
+
+    @Test
+    @DisplayName("Test for applying SAVE10")
     void testApplySave10() {
         cart.applyDiscountCode("SAVE10");
         assertEquals(10.0, cart.getDiscountPercentage());
+    }
+
+    @Test
+    @DisplayName("Test for applying SAVE20")
+    void testApplySave20() {
+        cart.applyDiscountCode("SAVE20");
+        assertEquals(20.0, cart.getDiscountPercentage());
+    }
+
+    @Test
+    @DisplayName("Test for applying invalid discount code (expect exception)")
+    void testApplyInvalidCode() {
+        assertThrows(IllegalArgumentException.class,
+            () -> cart.applyDiscountCode("SAVE50"));
     }
 
     @Test
@@ -56,3 +77,4 @@ public class ShoppingCartTest {
         assertEquals(0.0, cart.getTotalCost());
     }
 }
+
